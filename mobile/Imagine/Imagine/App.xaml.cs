@@ -1,7 +1,7 @@
 using Imagine.Api.Impl;
 using Imagine.Api.Impl.Interfaces;
-using Imagine.ViewModels;
-using Imagine.Views;
+using Imagine.Modules.Movies.Pages;
+using Imagine.Modules.Movies.ViewModels;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials.Implementation;
@@ -21,7 +21,7 @@ namespace Imagine
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MovieSearchPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -30,7 +30,7 @@ namespace Imagine
             containerRegistry.RegisterSingleton<IMovieApi, MovieApi>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<MovieSearchPage, MovieSearchViewModel>();
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Imagine.Modules.Movies.Pages.MovieSearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:models="clr-namespace:Imagine.Api.Impl.Models;assembly=Imagine.Api.Impl"
+    xmlns:viewmodels="clr-namespace:Imagine.Modules.Movies.ViewModels"
+    xmlns:views="clr-namespace:Imagine.Modules.Movies.Views"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodels:MovieSearchViewModel"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,20,*">
+            <CollectionView
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="10,0"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding FilteredMovies}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="No data found"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.Header>
+                    <BoxView HeightRequest="10" />
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Movie">
+                        <views:MovieCard Movie="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Padding="10"
+                BackgroundColor="Red">
+                <SearchBar
+                    x:Name="searchBar"
+                    Margin="0,20,0,10"
+                    BackgroundColor="White"
+                    Placeholder="Type a title"
+                    SearchCommand="{Binding SearchCommand}"
+                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
+                    VerticalOptions="Center" />
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Imagine.Modules.Movies.Views.MovieCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="root">
+    <ContentView.Content>
+        <Grid
+            Margin="10"
+            BackgroundColor="Black"
+            RowDefinitions="3*,1*">
+            <Image
+                x:Name="coverImage"
+                Grid.Row="0"
+                Aspect="AspectFill" />
+            <StackLayout
+                Grid.Row="1"
+                Padding="10,5"
+                BackgroundColor="#CC000000"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    Text="{Binding Source={x:Reference root}, Path=Movie.Title}"
+                    TextColor="White" />
+                <Label
+                    FontAttributes="Bold"
+                    Opacity="0.4"
+                    Text="{Binding Source={x:Reference root}, Path=Movie.ReleaseDate, StringFormat='{0:MMMM yyyy}'}"
+                    TextColor="White" />
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
