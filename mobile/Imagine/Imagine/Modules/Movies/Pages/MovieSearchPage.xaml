@@ -30,7 +30,7 @@
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.Header>
-                    <BoxView HeightRequest="10" />
+                    <BoxView HeightRequest="0" />
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Movie">

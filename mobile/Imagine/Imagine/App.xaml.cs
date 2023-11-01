@@ -1,7 +1,9 @@
 using Imagine.Api.Impl;
 using Imagine.Api.Impl.Interfaces;
+using Imagine.Interfaces;
 using Imagine.Modules.Movies.Pages;
 using Imagine.Modules.Movies.ViewModels;
+using Imagine.Services;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials.Implementation;
@@ -28,6 +30,8 @@ namespace Imagine
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterSingleton<IMovieApi, MovieApi>();
+            containerRegistry.RegisterSingleton<ICacheService, CacheService>();
+            containerRegistry.RegisterSingleton<IMovieService, MovieService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MovieSearchPage, MovieSearchViewModel>();

@@ -5,31 +5,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="root">
     <ContentView.Content>
-        <Grid
-            Margin="10"
-            BackgroundColor="Black"
-            RowDefinitions="3*,1*">
-            <Image
-                x:Name="coverImage"
-                Grid.Row="0"
-                Aspect="AspectFill" />
-            <StackLayout
-                Grid.Row="1"
-                Padding="10,5"
-                BackgroundColor="#CC000000"
-                Orientation="Vertical"
-                Spacing="0"
-                VerticalOptions="Center">
-                <Label
-                    FontAttributes="Bold"
-                    Text="{Binding Source={x:Reference root}, Path=Movie.Title}"
-                    TextColor="White" />
-                <Label
-                    FontAttributes="Bold"
-                    Opacity="0.4"
-                    Text="{Binding Source={x:Reference root}, Path=Movie.ReleaseDate, StringFormat='{0:MMMM yyyy}'}"
-                    TextColor="White" />
-            </StackLayout>
-        </Grid>
+        <StackLayout>
+            <Frame
+                Padding="0"
+                CornerRadius="20"
+                HasShadow="True"
+                IsClippedToBounds="True">
+                <Grid
+                    BackgroundColor="Black"
+                    RowDefinitions="3*,1*"
+                    RowSpacing="0">
+                    <Image
+                        x:Name="coverImage"
+                        Grid.Row="0"
+                        Aspect="AspectFill" />
+                    <StackLayout
+                        Grid.Row="1"
+                        Padding="20,5,20,10"
+                        BackgroundColor="#4DFFFFFF"
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            FontAttributes="Bold"
+                            Text="{Binding Source={x:Reference root}, Path=Movie.Title}"
+                            TextColor="White" />
+                        <Label
+                            FontAttributes="Bold"
+                            Opacity="0.4"
+                            Text="{Binding Source={x:Reference root}, Path=Movie.ReleaseDate, StringFormat='{0:MMMM yyyy}'}"
+                            TextColor="White" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
