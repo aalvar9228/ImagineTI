@@ -21,10 +21,7 @@ namespace Imagine.API.Controllers
         public ActionResult<SearchApiResponse> Search([FromQuery]SearchApiRequest request)
         {
             var result = _movieService.Search(request.Title, request.Page, request.PageSize);
-            return Ok(new SearchApiResponse
-            {
-                Data = result
-            });
+            return Ok(new SearchApiResponse(result));
         }
     }
 }

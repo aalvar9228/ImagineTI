@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Imagine.Business.Exceptions;
 using Imagine.Business.Interfaces;
 using Imagine.Business.Models;
 using Imagine.EntityFramework.Interfaces;
@@ -21,6 +22,8 @@ namespace Imagine.Business.Services
             var response = string.IsNullOrEmpty(title) ?
                 _movieRepository.Filter(page, pageSize) :
                 _movieRepository.Filter(page, pageSize, x => x.Title.ToLower().Contains(title.ToLower()));
+
+            if (!response.Any()) throw new NotFoundException();
 
             return _mapper.Map<List<Movie>>(response);
         }

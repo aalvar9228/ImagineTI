@@ -1,4 +1,5 @@
 using Imagine.API.Extensions;
+using Imagine.API.Middlewares;
 using Imagine.Business.Extensions;
 using Imagine.Business.Profiles;
 
@@ -23,20 +24,13 @@ namespace Imagine.API
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
