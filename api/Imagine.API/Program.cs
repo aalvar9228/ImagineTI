@@ -1,5 +1,6 @@
 using Imagine.API.Extensions;
 using Imagine.API.Middlewares;
+using Imagine.API.Options;
 using Imagine.Business.Extensions;
 using Imagine.Business.Profiles;
 
@@ -17,6 +18,9 @@ namespace Imagine.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.Configure<OAuth>(
+                builder.Configuration.GetSection(OAuth.Section));
 
             builder.Services.AddAutoMapper(typeof(BusinessProfile));
             builder.Services.ConfigureDBContext(builder.Configuration);
