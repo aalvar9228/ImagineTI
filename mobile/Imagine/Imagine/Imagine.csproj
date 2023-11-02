@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\ic_star.png" />
     <None Remove="Resources\Images\movie_placeholder.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\ic_star.png" />
     <EmbeddedResource Include="Resources\Images\movie_placeholder.jpeg" />
   </ItemGroup>
 
@@ -25,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Modules\Movies\Pages\MovieDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Modules\Movies\Pages\MovieSearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

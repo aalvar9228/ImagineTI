@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Imagine.Modules.Movies.Pages.MovieDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Imagine.Extensions"
+    xmlns:viewmodels="clr-namespace:Imagine.Modules.Movies.ViewModels"
+    x:DataType="viewmodels:MovieDetailViewModel">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Grid HeightRequest="200" RowDefinitions="*,auto">
+                    <Image
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Aspect="Fill"
+                        HeightRequest="150"
+                        Source="{local:ImageResource Imagine.Resources.Images.movie_placeholder.jpeg}" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        MaxLines="2"
+                        Text="{Binding Movie.Title}"
+                        TextColor="White" />
+                </Grid>
+                <StackLayout
+                    Padding="10"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Frame
+                        Padding="5"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="5">
+                        <Label
+                            Opacity="0.7"
+                            Text="{Binding Movie.ReleaseDate, StringFormat='{0:MMMM yyyy}'}"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+                    </Frame>
+                    <Frame
+                        Padding="5"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="5">
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="2"
+                            VerticalOptions="Center">
+                            <Image
+                                HeightRequest="14"
+                                Source="{local:ImageResource Imagine.Resources.Images.ic_star.png}"
+                                WidthRequest="14" />
+                            <Label
+                                FontAttributes="Bold"
+                                Opacity="0.7"
+                                Text="{Binding Movie.Rate, StringFormat='({0})'}"
+                                TextColor="White" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <Label
+                    Margin="10"
+                    Text="{Binding Movie.Description}"
+                    TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

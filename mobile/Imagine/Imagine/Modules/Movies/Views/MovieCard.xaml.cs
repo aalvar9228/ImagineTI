@@ -13,20 +13,12 @@ namespace Imagine.Modules.Movies.Views
         }
 
         public static readonly BindableProperty MovieProperty =
-            BindableProperty.Create(nameof(Movie), typeof(Movie), typeof(MovieCard), propertyChanged: OnMovieChanged);
+            BindableProperty.Create(nameof(Movie), typeof(Movie), typeof(MovieCard));
 
         public Movie Movie
         {
             get { return (Movie)GetValue(MovieProperty); }
             set { SetValue(MovieProperty, value); }
-        }
-
-        private static void OnMovieChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if(newValue is Movie movie && bindable is MovieCard control)
-            {
-                control.coverImage.Source = ImageSource.FromResource("Imagine.Resources.Images.movie_placeholder.jpeg");
-            }
         }
     }
 }

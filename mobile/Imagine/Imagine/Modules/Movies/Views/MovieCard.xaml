@@ -3,10 +3,12 @@
     x:Class="Imagine.Modules.Movies.Views.MovieCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Imagine.Extensions"
     x:Name="root">
     <ContentView.Content>
         <StackLayout>
             <Frame
+                Margin="5"
                 Padding="0"
                 CornerRadius="20"
                 HasShadow="True"
@@ -16,9 +18,9 @@
                     RowDefinitions="3*,1*"
                     RowSpacing="0">
                     <Image
-                        x:Name="coverImage"
                         Grid.Row="0"
-                        Aspect="AspectFill" />
+                        Aspect="AspectFill"
+                        Source="{local:ImageResource Imagine.Resources.Images.movie_placeholder.jpeg}" />
                     <StackLayout
                         Grid.Row="1"
                         Padding="20,5,20,10"

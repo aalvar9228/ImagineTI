@@ -1,6 +1,7 @@
-﻿using Imagine.Api.Impl.Interfaces;
-using Imagine.Api.Impl.Models;
+﻿using Imagine.Api.Impl.Models;
+using Imagine.Constants;
 using Imagine.Interfaces;
+using Imagine.Modules.Movies.Pages;
 using Imagine.Shared;
 using Prism.Commands;
 using Prism.Navigation;
@@ -23,12 +24,14 @@ namespace Imagine.Modules.Movies.ViewModels
         }
 
         public DelegateCommand<string> SearchCommand { get; set; }
+        public DelegateCommand<Movie> MovieTappedCommand { get; set; }
 
         public MovieSearchViewModel(INavigationService navigationService, IMovieService movieService)
             : base(navigationService)
         {
             _movieService = movieService;
             SearchCommand = new DelegateCommand<string>(async (input) => await SearchAsync(input));
+            MovieTappedCommand = new DelegateCommand<Movie>(async (movie) => await OpenMovieDetailAsync(movie));
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -53,6 +56,17 @@ namespace Imagine.Modules.Movies.ViewModels
                 Console.WriteLine($"Error at {nameof(SearchAsync)}: {ex}");
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Understood");
             }
+        }
+
+
+        private async Task OpenMovieDetailAsync(Movie movie)
+        {
+            if (movie == null) return;
+
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys.Movie, movie);
+
+            await NavigationService.NavigateAsync(nameof(MovieDetailPage), parameters);
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Imagine
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MovieSearchPage, MovieSearchViewModel>();
+            containerRegistry.RegisterForNavigation<MovieDetailPage, MovieDetailViewModel>();
         }
     }
 }

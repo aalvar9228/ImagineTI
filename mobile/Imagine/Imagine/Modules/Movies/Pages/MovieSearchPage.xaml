@@ -19,7 +19,10 @@
                 ItemSizingStrategy="MeasureAllItems"
                 ItemsSource="{Binding FilteredMovies}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" />
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="20" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.EmptyView>
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -34,7 +37,11 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Movie">
-                        <views:MovieCard Movie="{Binding .}" />
+                        <views:MovieCard Movie="{Binding .}">
+                            <views:MovieCard.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MovieSearchViewModel}}, Path=MovieTappedCommand}" CommandParameter="{Binding .}" />
+                            </views:MovieCard.GestureRecognizers>
+                        </views:MovieCard>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -42,7 +49,7 @@
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Padding="10"
-                BackgroundColor="Red">
+                BackgroundColor="{StaticResource Primary}">
                 <SearchBar
                     x:Name="searchBar"
                     Margin="0,20,0,10"
