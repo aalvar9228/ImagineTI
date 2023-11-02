@@ -1,5 +1,6 @@
 ﻿using Imagine.Api.Impl.Models;
 using Imagine.Constants;
+using Imagine.Exceptions;
 using Imagine.Interfaces;
 using Imagine.Modules.Movies.Pages;
 using Imagine.Shared;
@@ -50,6 +51,10 @@ namespace Imagine.Modules.Movies.ViewModels
             {
                 var response = await _movieService.SearchAsync(input);
                 FilteredMovies = new ObservableCollection<Movie>(response);
+            }
+            catch (ConnectivityException cex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", cex.Message, "Understood");
             }
             catch (Exception ex)
             {

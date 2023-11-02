@@ -1,11 +1,13 @@
 ﻿using Imagine.Api.Impl.Interfaces;
 using Imagine.Api.Impl.Models;
 using Imagine.Constants;
+using Imagine.Exceptions;
 using Imagine.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace Imagine.Services
 {
@@ -24,6 +26,7 @@ namespace Imagine.Services
         {
             try
             {
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet) throw new ConnectivityException();
                 var key = $"{StorageKeys.Movies}?title={title}&page={page}&pageSize={pageSize}";
                 var cacheData = await _cacheService.GetAsync<List<Movie>>(key);
                 if (cacheData?.Any() ?? false) return cacheData;
